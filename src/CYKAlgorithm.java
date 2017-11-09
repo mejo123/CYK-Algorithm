@@ -18,8 +18,8 @@ public class CYKAlgorithm {
 
         for (int column = 1; column < stringToLookFor.length(); column++) {
             for (int row = 1; row < rowSize; row++) {
-                for (char nonTernimal : nonTerminals) {
-                    derivations.add(new Derivation(column, row, nonTernimal, false));
+                for (char nonTerminal : nonTerminals) {
+                    derivations.add(new Derivation(column, row, nonTerminal, false));
                 }
             }
             rowSize--;
