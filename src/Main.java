@@ -34,17 +34,17 @@ public class Main {
         if (!(chomskyVerification.isValid(grammars))) {
             System.out.println("Please enter a Chomsky normalize grammar");
         } else {
-            ArrayList<ArrayList<String>> finalResult = cyk.runCYK(grammars);
-            for (int i = finalResult.size() - 1; i >= 0; i--) {
-                for (int j = 0; j < finalResult.get(i).size(); j++) {
-                    if (finalResult.get(i).get(j).equals("-1")) {
-                        System.out.print("{} ");
-                    } else{
-                        System.out.print(finalResult.get(i).get(j) + " ");
-                      }
-                }
-                System.out.print("\n");
-            }
+            ArrayList<Derivation> finalResult = cyk.runCYK(grammars, stringToLookFor);
+//            for (int i = finalResult.size() - 1; i >= 0; i--) {
+//                for (int j = 0; j < finalResult.get(i).size(); j++) {
+//                    if (finalResult.get(i).get(j).equals("-1")) {
+//                        System.out.print("{} ");
+//                    } else{
+//                        System.out.print(finalResult.get(i).get(j) + " ");
+//                      }
+//                }
+//                System.out.print("\n");
+//            }
 
         }
     }
