@@ -14,15 +14,15 @@ public class CYKAlgorithm {
     public ArrayList<Derivation> runCYK(ArrayList<Grammar> grammarList, String stringToLookFor) {
         ArrayList<Derivation> derivations = new ArrayList<>();
         ArrayList<Character> nonTerminals = getNonTerminals(grammarList);
-        int rowSize = stringToLookFor.length();
+        int columnSize = stringToLookFor.length();
 
         for (int row = 1; row < stringToLookFor.length(); row++) {
-            for (int column = 1; column < rowSize; column++) {
+            for (int column = 1; column < columnSize; column++) {
                 for (char nonTerminal : nonTerminals) {
                     derivations.add(new Derivation(row, column, nonTerminal, false));
                 }
             }
-            rowSize--;
+            columnSize--;
         }
 
         return derivations;
