@@ -16,8 +16,8 @@ public class CYKAlgorithm {
         ArrayList<Character> nonTerminals = getNonTerminals(grammarList);
         int columnSize = stringToLookFor.length();
 
-        for (int row = 1; row < stringToLookFor.length(); row++) {
-            for (int column = 1; column < columnSize; column++) {
+        for (int row = 1; row <= stringToLookFor.length(); row++) {
+            for (int column = 1; column <= columnSize; column++) {
                 for (char nonTerminal : nonTerminals) {
                     derivations.add(new Derivation(row, column, nonTerminal, false));
                 }
