@@ -16,10 +16,10 @@ public class CYKAlgorithm {
         ArrayList<Character> nonTerminals = getNonTerminals(grammarList);
         int rowSize = stringToLookFor.length();
 
-        for (int column = 1; column < stringToLookFor.length(); column++) {
-            for (int row = 1; row < rowSize; row++) {
+        for (int row = 1; row < stringToLookFor.length(); row++) {
+            for (int column = 1; column < rowSize; column++) {
                 for (char nonTerminal : nonTerminals) {
-                    derivations.add(new Derivation(column, row, nonTerminal, false));
+                    derivations.add(new Derivation(row, column, nonTerminal, false));
                 }
             }
             rowSize--;

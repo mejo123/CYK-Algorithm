@@ -1,12 +1,12 @@
 public class Derivation {
-    private int column;
     private int row;
+    private int column;
     private char nonTerminal;
     private boolean isVaild;
 
-    public Derivation(int column, int row, char nonTerminal, boolean isVaild) {
-        this.column = column;
+    public Derivation(int row, int column, char nonTerminal, boolean isVaild) {
         this.row = row;
+        this.column = column;
         this.nonTerminal = nonTerminal;
         this.isVaild = isVaild;
     }
