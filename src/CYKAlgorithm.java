@@ -22,6 +22,7 @@ public class CYKAlgorithm {
         ArrayList<Character> nonTerminals = getNonTerminals(grammarList);
         int columnSize = stringToLookFor.length();
 
+        // We need to initialize all possible derivations
         for (int row = 1; row <= stringToLookFor.length(); row++) {
             for (int column = 1; column <= columnSize; column++) {
                 for (char nonTerminal : nonTerminals) {
@@ -31,15 +32,59 @@ public class CYKAlgorithm {
             columnSize--;
         }
 
+        // First step is to parse how we can get all the terminals in our string
         for (Grammar z : grammarList) {
             derivations = findTerminalProductions(z, derivations, stringToLookFor);
         }
 
+        // Now we parse all the other possibilities
         for (int i = 2; i <= stringToLookFor.length(); i++)
+        {
             for (int j = 1; j <= stringToLookFor.length() - i + 1; j++)
-                for (int k = 1; k <= i - 1; k++) {
-                    derivations = getDoubleNonTerminals(grammarList, derivations, i, j, k);
+            {
+                for (int k = 1; k <= i - 1; k++)
+                {
+                  // Now we need to find all the productions of type X->YZ
+                  for(Grammar grammar : grammarList)
+                  {
+                    for(String rightSide : grammar.getRighthand())
+                    {
+                      if((rightSide.length() == 2) && (Character.isUpperCase(rightSide.charAt(0))) && (Character.isUpperCase(rightSide.charAt(1))))
+                      {
+                        boolean firstCondition = false;
+                        boolean secondCondition = false;
+                        for(Derivation derivation : derivations)
+                        {
+                          if(derivation.getRow() == k && derivation.getColumn() == j && derivation.getNonTerminal() == rightSide.charAt(0) )
+                          {
+                            firstCondition = true;
+                          }
+                        }
+
+                        for(Derivation derivation : derivations)
+                        {
+                          if(derivation.getRow() == (i - k) && derivation.getColumn() == (j + k) && derivation.getNonTerminal() == rightSide.charAt(1))
+                          {
+                            secondCondition = true;
+                          }
+                        }
+                        if(firstCondition && secondCondition)
+                        {
+                          for(Derivation derivation : derivations)
+                          {
+                            if(derivation.getRow() == i && derivation.getColumn() == j && derivation.getNonTerminal() == grammar.getLefthand().charAt(0))
+                            {
+                              derivation.setValid(true);
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  //  derivations = getDoubleNonTerminals(grammarList, derivations, i, j, k);
                 }
+              }
+            }
 
         return derivations;
     }

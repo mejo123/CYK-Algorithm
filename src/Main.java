@@ -28,9 +28,13 @@ public class Main {
                 grammars.add(new Grammar(usersGrammar.substring(0, usersGrammar.indexOf("-")), rightHand));
             }
         }
+
         System.out.println("Please enter the string you would like to check withing the grammar: ");
         stringToLookFor = scanner.nextLine();
 
+        // Just for formatting
+        System.out.println();
+        
         if (!(chomskyVerification.isValid(grammars))) {
             System.out.println("Please enter a Chomsky normalize grammar");
         } else {
