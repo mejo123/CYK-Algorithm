@@ -2,13 +2,13 @@ public class Derivation {
     private int row;
     private int column;
     private char nonTerminal;
-    private boolean isVaild;
+    private boolean isValid;
 
-    public Derivation(int row, int column, char nonTerminal, boolean isVaild) {
+    public Derivation(int row, int column, char nonTerminal, boolean isValid) {
         this.row = row;
         this.column = column;
         this.nonTerminal = nonTerminal;
-        this.isVaild = isVaild;
+        this.isValid = isValid;
     }
 
     public int getColumn() {
@@ -36,11 +36,11 @@ public class Derivation {
         this.nonTerminal = nonTerminal;
     }
 
-    public boolean isVaild() {
-        return isVaild;
+    public boolean isValid() {
+        return isValid;
     }
 
-    public void setVaild(boolean vaild) {
-        isVaild = vaild;
+    public void setValid(boolean vaild) {
+        isValid = vaild;
     }
 }
