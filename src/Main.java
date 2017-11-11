@@ -12,6 +12,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ChomskyVerification chomskyVerification = new ChomskyVerification();
         CYKAlgorithm cyk = new CYKAlgorithm();
+        Boolean isNotContained = true;
 
         System.out.println("Welcome tou our CYK Algorithm, Please enter a grammar in Chomsky Normal Form");
         System.out.println("The format should be X->X|X ,  whenever you are done with the productions, enter \"done\" ");
@@ -40,22 +41,33 @@ public class Main {
         } else {
             ArrayList<Derivation> finalResult = cyk.runCYK(grammars, stringToLookFor);
 
-            for (int i = stringToLookFor.length(); i >= 0; i--) {
-                for (int j = 1; j <= stringToLookFor.length(); j++) {
+            for (int i = stringToLookFor.length(); i > 0; i--) {
+                for (int j = 1; j <= stringToLookFor.length() - i + 1; j++) {
                     String output = "";
                     for (Derivation d : finalResult) {
                         if (i == d.getRow() && j == d.getColumn() && d.isValid()) {
                             output += d.getNonTerminal();
                         }
-//                    if (i == d.getRow() && !d.isValid())
-//                        System.out.print(" ");
+                    }
+                    if (output.isEmpty()) {
+                        output = "Ø";
                     }
                     System.out.format("%-10s", output);
                 }
                 System.out.println();
             }
 
+            for (Derivation derivation : finalResult) {
+                if (derivation.getRow() == stringToLookFor.length() && derivation.getColumn() == 1 && derivation.isValid()) {
+                    System.out.println("String is contained in grammar.");
+                    isNotContained = false;
+                }
+
+            }
+
+            if (isNotContained) {
+                System.out.println("String is not contained in grammar.");
+            }
         }
     }
-
 }
