@@ -13,7 +13,6 @@ public class Main {
         ChomskyVerification chomskyVerification = new ChomskyVerification();
         CYKAlgorithm cyk = new CYKAlgorithm();
 
-
         System.out.println("Welcome tou our CYK Algorithm, Please enter a grammar in Chomsky Normal Form");
         System.out.println("The format should be X->X|X ,  whenever you are done with the productions, enter \"done\" ");
 
@@ -33,6 +32,7 @@ public class Main {
         System.out.println("Please enter the string you would like to check withing the grammar: ");
         stringToLookFor = scanner.nextLine();
 
+        // Just for formatting
         System.out.println();
 
         if (!(chomskyVerification.isValid(grammars))) {
