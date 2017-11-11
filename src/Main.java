@@ -61,6 +61,7 @@ public class Main {
                 if (derivation.getRow() == stringToLookFor.length() && derivation.getColumn() == 1 && derivation.isValid()) {
                     System.out.println("String is contained in grammar.");
                     isNotContained = false;
+                    break;
                 }
 
             }
