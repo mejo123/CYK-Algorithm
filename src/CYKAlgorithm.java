@@ -1,21 +1,6 @@
 import java.util.ArrayList;
 
-
 public class CYKAlgorithm {
-    public ArrayList<Character> getNonTerminals(ArrayList<Grammar> grammarList) {
-        ArrayList<Character> nonTerminal = new ArrayList<>();
-
-        for (Grammar grammar : grammarList) {
-            nonTerminal.add(grammar.getLefthand().charAt(0));
-        }
-
-        return nonTerminal;
-    }
-
-    public char getNonTerminal(Grammar grammar) {
-        return grammar.getLefthand().charAt(0);
-    }
-
 
     public ArrayList<Derivation> runCYK(ArrayList<Grammar> grammarList, String stringToLookFor) {
         ArrayList<Derivation> derivations = new ArrayList<>();
@@ -45,6 +30,20 @@ public class CYKAlgorithm {
         }
 
         return derivations;
+    }
+
+    public ArrayList<Character> getNonTerminals(ArrayList<Grammar> grammarList) {
+        ArrayList<Character> nonTerminal = new ArrayList<>();
+
+        for (Grammar grammar : grammarList) {
+            nonTerminal.add(grammar.getLefthand().charAt(0));
+        }
+
+        return nonTerminal;
+    }
+
+    public char getNonTerminal(Grammar grammar) {
+        return grammar.getLefthand().charAt(0);
     }
 
     public ArrayList<Derivation> getDoubleNonTerminals(ArrayList<Grammar> grammarList, ArrayList<Derivation> derivations, int i, int j, int k) {
