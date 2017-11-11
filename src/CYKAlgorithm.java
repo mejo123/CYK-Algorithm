@@ -50,8 +50,8 @@ public class CYKAlgorithm {
                 if (nonTerminal.length() == 2 && Character.isUpperCase(nonTerminal.charAt(0)) && Character.isUpperCase(nonTerminal.charAt(1)))
                     for (Derivation derivation : derivations)
                         for (Derivation derivation1 : derivations)
-                            if (derivation.getRow() == k && derivation.getColumn() == j && derivation.getNonTerminal() == nonTerminal.charAt(0))
-                                if (derivation1.getRow() == i - k && derivation1.getColumn() == j + k && derivation1.getNonTerminal() == nonTerminal.charAt(1))
+                            if (derivation.getRow() == k && derivation.getColumn() == j && derivation.getNonTerminal() == nonTerminal.charAt(0) && derivation.isValid())
+                                if (derivation1.getRow() == i - k && derivation1.getColumn() == j + k && derivation1.getNonTerminal() == nonTerminal.charAt(1) && derivation1.isValid())
                                     for (Derivation derivation2 : derivations)
                                         if (derivation2.getRow() == i && derivation2.getColumn() == j && derivation2.getNonTerminal() == grammar.getLefthand().charAt(0))
                                             derivation2.setValid(true);

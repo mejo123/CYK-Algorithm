@@ -13,6 +13,7 @@ public class Main {
         ChomskyVerification chomskyVerification = new ChomskyVerification();
         CYKAlgorithm cyk = new CYKAlgorithm();
 
+
         System.out.println("Welcome tou our CYK Algorithm, Please enter a grammar in Chomsky Normal Form");
         System.out.println("The format should be X->X|X ,  whenever you are done with the productions, enter \"done\" ");
 
@@ -28,8 +29,11 @@ public class Main {
                 grammars.add(new Grammar(usersGrammar.substring(0, usersGrammar.indexOf("-")), rightHand));
             }
         }
+
         System.out.println("Please enter the string you would like to check withing the grammar: ");
         stringToLookFor = scanner.nextLine();
+
+        System.out.println();
 
         if (!(chomskyVerification.isValid(grammars))) {
             System.out.println("Please enter a Chomsky normalize grammar");
@@ -37,13 +41,16 @@ public class Main {
             ArrayList<Derivation> finalResult = cyk.runCYK(grammars, stringToLookFor);
 
             for (int i = stringToLookFor.length(); i >= 0; i--) {
-                for (Derivation d : finalResult) {
-                    if (i == d.getRow() && d.isValid()) {
-                        System.out.print(d.getNonTerminal());
-                        System.out.print(" ");
-                    }
+                for (int j = 1; j <= stringToLookFor.length(); j++) {
+                    String output = "";
+                    for (Derivation d : finalResult) {
+                        if (i == d.getRow() && j == d.getColumn() && d.isValid()) {
+                            output += d.getNonTerminal();
+                        }
 //                    if (i == d.getRow() && !d.isValid())
 //                        System.out.print(" ");
+                    }
+                    System.out.format("%-10s", output);
                 }
                 System.out.println();
             }
