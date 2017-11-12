@@ -53,7 +53,7 @@ public class Main {
                     }
                 }
                 if (output.isEmpty()) {
-                    output = "Ø";
+                    output = "-";
                 }
                 System.out.format("%-10s", output);
             }
@@ -68,12 +68,10 @@ public class Main {
                 isNotContained = false;
                 break;
             }
-
         }
 
         if (isNotContained) {
             System.out.println("String is not contained in grammar.");
-
         }
     }
 }
