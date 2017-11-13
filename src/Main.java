@@ -28,6 +28,9 @@ public class Main {
             } else if (!(usersGrammar.contains("->"))) {
                 System.out.println();
                 System.out.println("Please reenter a valid grammar with a correct syntax.");
+            }else if (!(usersGrammar.matches("^[a-zA-Z->|]+$"))){
+                System.out.println();
+                System.out.println("Please reenter a valid grammar with a correct syntax.");
             } else {
                 ArrayList<String> rightHand = new ArrayList<>(Arrays.asList(usersGrammar.substring(usersGrammar.indexOf(">") + 1, usersGrammar.length()).split("\\|")));
                 grammars.add(new Grammar(usersGrammar.substring(0, usersGrammar.indexOf("-")), rightHand));
