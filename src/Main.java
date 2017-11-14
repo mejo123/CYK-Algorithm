@@ -15,7 +15,7 @@ public class Main {
         Boolean isNotContained = true;
 
         System.out.println("Welcome to our CYK Algorithm, Please enter a grammar in Chomsky Normal Form");
-        System.out.println("The format should be X->X|X ,  whenever you are done with the productions, enter \"done\" ");
+        System.out.println("The format should be X->AX|XA or A->a,  whenever you are done with the productions, enter \"done\" ");
 
         while (true) {
             usersGrammar = scanner.nextLine();
@@ -38,7 +38,7 @@ public class Main {
         }
 
         System.out.println();
-        System.out.println("Please enter the string you would like to check withing the grammar: ");
+        System.out.println("Please enter the string you would like to check within the grammar: ");
         stringToLookFor = scanner.nextLine();
 
         // Just for formatting
@@ -66,7 +66,7 @@ public class Main {
         System.out.println();
 
         for (Derivation derivation : finalResult) {
-            if (derivation.getRow() == stringToLookFor.length() && derivation.getColumn() == 1 && derivation.isValid()) {
+            if (derivation.getRow() == stringToLookFor.length() && derivation.getColumn() == 1 && derivation.isValid() && derivation.getNonTerminal() == grammars.get(0).getLefthand().charAt(0)) {
                 System.out.println("String is contained in grammar.");
                 isNotContained = false;
                 break;
